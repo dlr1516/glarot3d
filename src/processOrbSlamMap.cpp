@@ -152,8 +152,6 @@ int main(int argc,char** argv)
   std::cout << "Params:\n";
   params.write(std::cout);
 
-  return -1;
-
   std::cout << "\n\nReading..." << std::endl;
   loadMap(filenameIn,kfdata);
   std::cout << "Loaded " << kfdata.size() << " keyframes" << std::endl;
@@ -174,7 +172,6 @@ int main(int argc,char** argv)
     std::cout << "Average points / keyframe: " << (1.0 * pointNum / countKf) << ", path len " << pathLen << std::endl;
   }
   std::cout << "Found " << countKf << " keyframes" << std::endl;
-  return 0;
 
   countKf = 0;
   for (auto& kf : kfdata) {
@@ -267,7 +264,7 @@ int main(int argc,char** argv)
   }
   fileOut << "#kf_query_index kf_query_id kf_match_index kf_match_id matching_num dpos dang[deg]" << std::endl;
 
-  for (int i = 0; i < kfdata.size() && i < 0; i+=incr) {
+  for (int i = 0; i < kfdata.size(); i+=incr) {
     std::vector<std::pair<glarot3d::Glarot3d::Accumulator,int> > nearest;
     PRUN("localizeGlarot3d()");
     localizeGlarot3dConnected(i,kfdata,neighNum,diff,nearest,norm1min);
